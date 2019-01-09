@@ -21,4 +21,8 @@ export class AppService {
     await this.articleRepository.save(article);
     return article;
   }
+
+  async getAllArticles(): Promise<Article[]> {
+    return this.articleRepository.find();
+  }
 }

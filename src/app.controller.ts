@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
 import { AppService } from './app.service';
 import { ArticleDTO } from './article.dto';
 
@@ -14,5 +14,12 @@ export class AppController {
   @Get("/articles")
   getArticles(): ArticleDTO {
     return { name: 'TS > Flow 😶', content: 'Croute' };
+  }
+
+  @Post('/articles')
+  async createArticle(
+    @Body() createArticleDto: ArticleDTO,
+  ): Promise<ArticleDTO> {
+    return this.appService.storeArticle(createArticleDto);
   }
 }
